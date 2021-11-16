@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import data from './data.json';
+import User from './components/User.js';
 import './App.css';
 
-function App() {
+const users = data.results; 
+
+const userList = users.map(u => (
+  <User 
+    key={u.name.first}
+    name={`${u.name.title} ${u.name.first} ${u.name.last}`}  
+    quote={u.quote}  
+    image={u.picture.large}  
+  />
+));
+
+console.log('list', userList);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="columns is-multiline">
+     {userList}
     </div>
   );
 }
